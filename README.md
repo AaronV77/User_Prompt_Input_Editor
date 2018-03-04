@@ -17,19 +17,17 @@ Make sure that you have c++ installed, if not try the following:
 - Type: yum groupinstall “Development Tools”
 - Type: yum install gcc-c++
 
-###	Mac:
+### Mac:
 - Make sure that your XCode installation is up-to-date. 
 - Hopefully that in your XCode installation it will update the gcc compiler, if not use google.
-<br>
-<br>
+
 ## Compiling
 
 To compile the program just do the following: c++ main.cpp
 <br>
 <br>
 # Author: Aaron A. Valoroso
-<br>
-<br>
+
 ## Inspiring Quotes
 
 I can't change the direction of the wind, but I can adjust my sails to always reach my destination.
