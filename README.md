@@ -4,7 +4,21 @@ This program is designed for people to take and implement it into their own appl
 
 ## Prerequisites
 
-There are no prerequisities to running this program.
+Make sure that you have c++ installed, if not try the following:
+
+### Ubuntu: 
+- Type: sudo apt-get install build-essential 
+- Type: sudo apt-get install g++
+- Type: sudo apt-get install gcc-4.9 g++-4.9
+
+### Red Hat: 
+- Type: yum install gcc-c++ kernel-devel make
+- Type: yum groupinstall “Development Tools”
+- Type: yum install gcc-c++
+
+###	Mac:
+- Make sure that your XCode installation is up-to-date. 
+- Hopefully that in your XCode installation it will update the gcc compiler, if not use google.
 
 ## Compiling
 
