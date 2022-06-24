@@ -12,4 +12,4 @@ Utilities.o: Utilities.cpp Utilities.h
 	c++ -c  Utilities.cpp
 		
 clean:
-	rm Utilities.o a.out
+	rm *.o *.out
