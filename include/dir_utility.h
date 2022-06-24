@@ -13,7 +13,18 @@
 
 int du_debugger_flag = 0;
 
-int is_dir(char * path) {
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
+int is_dir(char * path) 
+{
 
     if (du_debugger_flag) printf("Entering is_dir function.\n");
 
@@ -30,8 +41,18 @@ int is_dir(char * path) {
     return 0;
 }
 
-int is_file(char * path) {
-
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
+int is_file(char * path) 
+{
     if (du_debugger_flag) printf("Entering is_file function.\n");
 	
     struct stat fileStruct;
@@ -48,8 +69,18 @@ int is_file(char * path) {
 	return 0;
 }
 
-int change_permissions(char * path, char * permissions) {
-    
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
+int change_permissions(char * path, char * permissions) 
+{
     if (du_debugger_flag) printf("Entering change_permissions function.\n");
     
     int i = strtol(permissions, 0, 8);
@@ -64,6 +95,16 @@ int change_permissions(char * path, char * permissions) {
     return 0;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
 int create_file(char * path, char * contents, char * permissions) {
     
     if (du_debugger_flag) printf("Entering create_file function.\n");
@@ -97,14 +138,17 @@ int create_file(char * path, char * contents, char * permissions) {
 }
 
 //----------------------------------------------------------------------------------
-// Function Name: get_directory_contents
+// Function Name: 
 // Function Input Variables:
-//  - path: (char*) Contains the absolute path to a directory.
+//    - 
 // Function Return Value:
-//  - Successful: A linked list filled with files or directories.
-//  - Fatal Error: A NULL value.
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
 //----------------------------------------------------------------------------------
-Linked_List * get_directory_contents(char * path) {
+Linked_List * get_directory_contents(char * path) 
+{
 
     if (du_debugger_flag) printf("Entering get_directory_contents function.\n");
 
@@ -160,7 +204,18 @@ Linked_List * get_directory_contents(char * path) {
     return directory_contents;
 }
 
-void directory_utility_debugger() {
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
+void directory_utility_debugger() 
+{
 	du_debugger_flag = 1;
 	return;
 }

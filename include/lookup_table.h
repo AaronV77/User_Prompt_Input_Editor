@@ -6,6 +6,14 @@
 
 #include <stdlib.h>
 
+//----------------------------------------------------------------------------------
+// Function Name: Linux_Keys
+// Structure Notes:
+//    - This structure is the layout of the contents of each key in the lookup table. 
+//      The key is the value read from the keyboard input, the key_name is the name 
+//      value for the given key, key_value is the ascii output, and the key_shift_value
+//      is what the ascii value would be if the shift key was being held down.
+//----------------------------------------------------------------------------------
 typedef struct lkey {
   int key_code;
   char * key_name;
@@ -46,17 +54,44 @@ Linux_Keys linux_lookup_table[] = {
   {260, "NONE", '\0', '\0'}, {261, "NONE", '\0', '\0'}, {262, "NONE", '\0', '\0'}, {263, "NONE", '\0', '\0'}, {264, "NONE", '\0', '\0'}, {265, "NONE", '\0', '\0'}, {266, "NONE", '\0', '\0'}, {267, "NONE", '\0', '\0'}, {268, "NONE", '\0', '\0'}, {269, "NONE", '\0', '\0'},  
 };
 
+//----------------------------------------------------------------------------------
+// Function Name: compare_keys
+// Function Input Variables:
+//    - const void * a: is an int pointer of the table key value for one key. 
+//    - const void * b: is an int pointer of the table key value for another key. 
+// Function Return Value:
+//    - Successful:     the difference between either key.
+//    - Error:          the difference between either key.
+// Function Notes:
+//    - The function is given two keys from the bsearch function and compares the difference between
+//      either key number that it was given. 
+//----------------------------------------------------------------------------------
 static int compare_keys(const void * a, const void * b) {
-    // Determine if bsearch has indexed too far into the lookup table.
+    // Note: Determine if bsearch has indexed too far into the lookup table.
     return ( *(int*)a - *(int*)b );
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: get_linux_value
+// Function Input Variables:
+//    - int key:    is an int that is looking to be found in the lookup table.
+// Function Return Value:
+//    - Successful: a pointer to a Linux_Key structure with the found key.
+//    - Error:      a NULL value.
+// Function Notes:
+//    - The user sends in a number / key to the function to be found within the lookup
+//      table. This method is meant to be faster than a switch statment, a bunch of it
+//      statements, or anything to complex. 
+//----------------------------------------------------------------------------------
 Linux_Keys * get_linux_value(int key) {
-    // Get the starting point into the lookup table to start looping at.
+    // Note: Get the starting point into the lookup table to start looping at.
     Linux_Keys key_stroke[1] = {{key}};
-    // Use bsearch algorithm to find the correct key that was pressed in the lookup table.
-    Linux_Keys * lookup_key = bsearch(key_stroke, linux_lookup_table, (sizeof(linux_lookup_table) / sizeof(linux_lookup_table[0])), sizeof(linux_lookup_table[0]), compare_keys);
-    // Return the lookup key.
+    // Note: Use bsearch algorithm to find the correct key that was pressed in the lookup table.
+    Linux_Keys * lookup_key = bsearch(key_stroke, linux_lookup_table, 
+                                      (sizeof(linux_lookup_table) / sizeof(linux_lookup_table[0])), 
+                                      sizeof(linux_lookup_table[0]), 
+                                      compare_keys);
+    // Note: Return the lookup key.
     return lookup_key ? lookup_key : NULL;
 }
 

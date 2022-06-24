@@ -5,6 +5,11 @@
 #include <stdlib.h>     // calloc
 #include <string.h>     // strcpy
 
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
 typedef struct Linked_List_Node { 
     char * string;
     int string_size;
@@ -12,6 +17,12 @@ typedef struct Linked_List_Node {
     struct Linked_List_Node * past;
 }Linked_List_Node;
 
+//----------------------------------------------------------------------------------
+// Function Name: 
+
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
 typedef struct Linked_List {
     int list_length;
     Linked_List_Node * front, * rear;
@@ -20,11 +31,14 @@ typedef struct Linked_List {
 int ll_debugger_flag = 0;
 
 //----------------------------------------------------------------------------------
-// Function Name: vec_push
+// Function Name: 
 // Function Input Variables:
+//    - 
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
 //----------------------------------------------------------------------------------
 void vec_push(Linked_List ** list, char * string) {
     if (ll_debugger_flag) printf("Entering the vec_push function\n");
@@ -55,11 +69,14 @@ void vec_push(Linked_List ** list, char * string) {
 }
 
 //----------------------------------------------------------------------------------
-// Function Name: vec_pop
+// Function Name: 
 // Function Input Variables:
+//    - 
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
 //----------------------------------------------------------------------------------
 void vec_pop(Linked_List ** list) {
     if (ll_debugger_flag) printf("Entering the vec_pop function\n");
@@ -86,11 +103,14 @@ void vec_pop(Linked_List ** list) {
 }
 
 //----------------------------------------------------------------------------------
-// Function Name: vec_pop
+// Function Name: 
 // Function Input Variables:
+//    - 
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
 //----------------------------------------------------------------------------------
 void vec_remove(Linked_List ** list, char * string, int number_of_nodes) {
     if (ll_debugger_flag) printf("Entering the vec_pop function\n");
@@ -188,12 +208,14 @@ void vec_remove(Linked_List ** list, char * string, int number_of_nodes) {
 }
 
 //----------------------------------------------------------------------------------
-// Function Name: vec_get
+// Function Name: 
 // Function Input Variables:
+//    - 
 // Function Return Value:
-//  - Successful:
-//  - Error:
-// Function Notes: This function needs start with one and not zero like the other functions.
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
 //----------------------------------------------------------------------------------
 Linked_List_Node * vec_get(Linked_List ** list, char * string, int number_of_nodes) {
     if (ll_debugger_flag) printf("Entering the vec_get function\n");
@@ -254,12 +276,16 @@ Linked_List_Node * vec_get(Linked_List ** list, char * string, int number_of_nod
 
     return current;
 }
+
 //----------------------------------------------------------------------------------
-// Function Name: vec_cleanup
+// Function Name: 
 // Function Input Variables:
+//    - 
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
 //----------------------------------------------------------------------------------
 void vec_cleanup(Linked_List ** list) {
     if (ll_debugger_flag) printf("Entering the vec_cleanup function\n");
@@ -285,11 +311,14 @@ void vec_cleanup(Linked_List ** list) {
 }
 
 //----------------------------------------------------------------------------------
-// Function Name: vec_listall
+// Function Name: 
 // Function Input Variables:
+//    - 
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
 //----------------------------------------------------------------------------------
 void vec_listall(Linked_List * list) {
     if (ll_debugger_flag) printf("Entering the vec_listall function\n");
@@ -312,11 +341,14 @@ void vec_listall(Linked_List * list) {
 }
 
 //----------------------------------------------------------------------------------
-// Function Name: linked_list_debugger
+// Function Name: 
 // Function Input Variables:
+//    - 
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
 //----------------------------------------------------------------------------------
 void linked_list_debugger() {
     ll_debugger_flag = 1;

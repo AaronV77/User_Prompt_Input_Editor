@@ -7,7 +7,6 @@ int main(int argc, char *argv[])
     FILE * fd = NULL;
     unsigned char (*function_ptr)(FILE * fd) = NULL;
 
-    // Note: 
     char * keyboard_dev_input_file = determine_keyboard_source();
 
     // Note: See if the program can find the keyboard dev file.
@@ -35,12 +34,13 @@ int main(int argc, char *argv[])
         function_ptr = &grab_user_input_from_getchar;
     }
 
-    process_user_input(*function_ptr, fd);
+    // Note: Pass the funtion pointer to start getting input from the user.
+    process_user_input(*function_ptr, fd); 
+
 
     if (keyboard_dev_input_file) 
         free(keyboard_dev_input_file);
 
-    // Note: Close the input device file.
     if (fd)
         fclose(fd);
 

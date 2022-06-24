@@ -3,6 +3,18 @@
 
 #include "astring.h"
 
+//----------------------------------------------------------------------------------
+// Function Name: end_key_press
+// Function Input Variables:
+//    - string * user_input: is a string pointer that holds the current user input.
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: is the cursor position;
+//    - Error:      is the cursor position;
+// Function Notes:
+//    - This function will take the current cursor position and move it to the end of the
+//      user input on the screen.
+//----------------------------------------------------------------------------------
 int end_key_press(string * user_input, int cursor_position) 
 {
     // Note: Get the number of times we have to move the cursor to the right.
@@ -22,6 +34,18 @@ int end_key_press(string * user_input, int cursor_position)
     return cursor_position;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: clear_string_from_screen
+// Function Input Variables:
+//    - string * user_input: is a string pointer that holds the current user input.
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: is the cursor position;
+//    - Error:      is the cursor position;
+// Function Notes:
+//    - This function will move the cursor to the end of the user input on the screen and
+//      then delete everything off of the screen. 
+//----------------------------------------------------------------------------------
 int clear_string_from_screen(string * user_input, int cursor_position)
 {
     cursor_position = end_key_press(user_input, cursor_position);
@@ -36,6 +60,16 @@ int clear_string_from_screen(string * user_input, int cursor_position)
     return cursor_position;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - string * user_input: is a string pointer that holds the current user input.
+// Function Return Value:
+//    - Successful: is the cursor position;
+//    - Error:      is the cursor position;
+// Function Notes:
+//    - This function moves the cursor onto the screen to the far left of the screen. 
+//----------------------------------------------------------------------------------
 int move_cursor_far_right(string * user_input)
 {
     // Note: Loop through the passed in string.
@@ -48,12 +82,37 @@ int move_cursor_far_right(string * user_input)
     return user_input->current_num_col;
 }
 
-int new_line_key_press() {
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
+int new_line_key_press() 
+{
 
     return 0;
 }
 
-int arrow_up_key_press(string ** user_input, Linked_List ** executed_commands, int linked_list_iterator, int cursor_position)
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - string ** user_input: is a double string pointer that holds the current user input.
+//    - Linked_List * executed_commands: is a pointer to a linked list of all the executed commands.
+//    - int linked_list_iterator: is an integer that shows where we are within the linked list of executed commands.
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: the user input length and plus one for cursor position. 
+//    - Error:      the user input length and plus one for cursor position. 
+// Function Notes:
+//    - This function will grab the previous command and put it in the same spot that 
+//      the user was typing in. 
+//----------------------------------------------------------------------------------
+int arrow_up_key_press(string ** user_input, Linked_List * executed_commands, int linked_list_iterator, int cursor_position)
 {
     // Note: Get the node from the linked list that the user is looking for.
     Linked_List_Node * node = vec_get(executed_commands, "front", linked_list_iterator);
@@ -72,10 +131,24 @@ int arrow_up_key_press(string ** user_input, Linked_List ** executed_commands, i
         printf("%s", (*user_input)->array);
     }
 
-    return 0;
+    return (*user_input)->current_num_col + 1;;
 }
 
-int arrow_down_key_press(string ** user_input, Linked_List ** executed_commands, int linked_list_iterator, int cursor_position) 
+//----------------------------------------------------------------------------------
+// Function Name: arrow_down_key_press
+// Function Input Variables:
+//    - string ** user_input: is a double string pointer that holds the current user input.
+//    - Linked_List * executed_commands: is a pointer to a linked list of all the executed commands.
+//    - int linked_list_iterator: is an integer that shows where we are within the linked list of executed commands.
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: the user input length and plus one for cursor position. 
+//    - Error:      the user input length and plus one for cursor position. 
+// Function Notes:
+//    - This function will grab the next command and put it in the same spot that 
+//      the user was typing in. 
+//----------------------------------------------------------------------------------
+int arrow_down_key_press(string ** user_input, Linked_List * executed_commands, int linked_list_iterator, int cursor_position) 
 {
     // Note: Get the node from the linked list that the user is looking for.
     Linked_List_Node * node =  vec_get(executed_commands, "front", linked_list_iterator);
@@ -94,9 +167,19 @@ int arrow_down_key_press(string ** user_input, Linked_List ** executed_commands,
         printf("%s", (*user_input)->array);
     }
 
-    return 0;
+    return (*user_input)->current_num_col + 1;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: arrow_left_key_press
+// Function Input Variables:
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: is the cursor position;
+//    - Error:      is the cursor position;
+// Function Notes:
+//    - This function moves the cursor to the left one position. 
+//----------------------------------------------------------------------------------
 int arrow_left_key_press(int cursor_position) 
 {
     // Note: Check to see if the cursor is at the end of the screen already.
@@ -111,6 +194,17 @@ int arrow_left_key_press(int cursor_position)
     return cursor_position;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: arrow_right_key_press
+// Function Input Variables:
+//    - string * user_input: is a string pointer that holds the current user input.
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: is the cursor position;
+//    - Error:      is the cursor position;
+// Function Notes:
+//    - This function moves the cursor to the right one position. 
+//----------------------------------------------------------------------------------
 int arrow_right_key_press(string * user_input, int cursor_position) 
 {
     // Note: Check to see if the cursor hasn't exceeded the 1+ past the current line.
@@ -125,16 +219,47 @@ int arrow_right_key_press(string * user_input, int cursor_position)
     return cursor_position;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
 int page_up_key_press() 
 {
     return 0;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
 int page_down_key_press() 
 {
     return 0;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: home_key_press
+// Function Input Variables:
+//    - string * user_input: is a string pointer that holds the current user input.
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: is the cursor position;
+//    - Error:      is the cursor position;
+// Function Notes:
+//    - This function will move cursor all the way to the left of the user input.
+//----------------------------------------------------------------------------------
 int home_key_press(int cursor_position) 
 {
     // Note: Get the number of times we have to move the cursor to the right.
@@ -154,11 +279,33 @@ int home_key_press(int cursor_position)
     return cursor_position;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: 
+// Function Input Variables:
+//    - 
+// Function Return Value:
+//    - Successful:
+//    - Error:
+// Function Notes:
+//    - 
+//----------------------------------------------------------------------------------
 int insert_key_press() 
 {
     return 0;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: backspace_key_press
+// Function Input Variables:
+//    - string ** user_input: is a double string pointer that holds the current user input.
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: is the cursor position;
+//    - Error:      is the cursor position;
+// Function Notes:
+//    - This function will process deleting characters off the screen from either at the end
+//      of the string or from some where within side the string. 
+//----------------------------------------------------------------------------------
 int backspace_key_press(string ** user_input, int cursor_position) 
 {
     int old_cursor_position = 0;
@@ -181,7 +328,7 @@ int backspace_key_press(string ** user_input, int cursor_position)
             // Note: Decrement the cursor iterator once due to the deletion of the character from the screen.
             // Note: Decrement the cursor iterator once due to the deletion of the character from the string.
             // Note: We have to do the subtraction by 2 for getting the cursor to the end of the original string
-            //       - size and counter act the string shortening on us in the mean time.
+            // - size and counter act the string shortening on us in the mean time.
             cursor_position -= 2;
 
             // Note: Save the cursor position because we will lose it in the clearing of the string from the screen function.
@@ -190,11 +337,11 @@ int backspace_key_press(string ** user_input, int cursor_position)
             cursor_position = clear_string_from_screen((*user_input), cursor_position);            
 
             // Note: We subtract the original cursor position from the end of the string. We have to subtract one 
-            //       - from the end of the string variable due to it being the original size + 1 for the cursor position.
-            //       - Remember this was done to check to see if we were at the end of the string. Then we have to subtract
-            //       - everything by one because of over compensating the subtraction to be able to delete everything off 
-            //       - of the screen. By subtacting one from the value we are actually move the cursor to the right versas
-            //       - the left when looking at the algorithm. 
+            // - from the end of the string variable due to it being the original size + 1 for the cursor position.
+            // - Remember this was done to check to see if we were at the end of the string. Then we have to subtract
+            // - everything by one because of over compensating the subtraction to be able to delete everything off 
+            // - of the screen. By subtacting one from the value we are actually move the cursor to the right versas
+            // - the left when looking at the algorithm. 
             int shift = ((end_of_string - 1) - old_cursor_position) - 1;
 
             // Note: Reprint our new string on the screen. This will push our cursor to the end of the string.
@@ -217,6 +364,18 @@ int backspace_key_press(string ** user_input, int cursor_position)
     return cursor_position;
 }
 
+//----------------------------------------------------------------------------------
+// Function Name: delete_key_press
+// Function Input Variables:
+//    - string ** user_input: is a double string pointer that holds the current user input.
+//    - int cursor_position: is an int that stores the position of the cursor on the screen.
+// Function Return Value:
+//    - Successful: is the cursor position;
+//    - Error:      is the cursor position;
+// Function Notes:
+//    - This function will process deleting characters off the screen to the right of the
+//      of the cursor.
+//----------------------------------------------------------------------------------
 int delete_key_press(string ** user_input, int cursor_position) 
 {
     // Note: Check to see if we are at the end of the string.

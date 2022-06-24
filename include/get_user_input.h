@@ -13,11 +13,16 @@
 #include "key_functions.h"
 
 //----------------------------------------------------------------------------------
-// Function Name: get_directory_contents
+// Function Name: determine_keyboard_source
 // Function Input Variables:
+//    - None
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful: a char pointer containing the absolute path of where to grab keyboard information.
+//    - Error:      a NULL value.
+// Function Notes:
+//    - This function is meant to look for the keyboard input file for incming input from
+//      the user. If the user doesn't have permissions or something else goes wrong then 
+//      a NULL value will be returned.
 //----------------------------------------------------------------------------------
 char * determine_keyboard_source() {
     // Note: This linked list will hold all the files in the /dev/input/by-path directory.
@@ -25,7 +30,7 @@ char * determine_keyboard_source() {
     // Note: Store the full path to the keyboard dev input file.
     char * keyboard_dev_input_file = NULL;
 
-    // Grab the directory of /dev/input/by-path
+    // Note: Grab the directory of /dev/input/by-path
     dev_input_file_list = get_directory_contents("/dev/input/by-path/");
     
     // Note: Check to see if the linked list has contents
@@ -58,9 +63,16 @@ char * determine_keyboard_source() {
 //----------------------------------------------------------------------------------
 // Function Name: grab_user_input_from_getchar
 // Function Input Variables:
+//    - FILE * fd:  is a file pointer to where to grab user input from. 
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful: returns a character from the key board.
+//    - Error:      none
+// Function Notes:
+//    - This function is used to grab input from the user by reading from standard in.
+//      There is no special functionality for characters but for Escape, Home, Delete,
+//      Insert, and so forth there is specail code to handle these keys. These special
+//      keys return more than one number and after either an additional number or two
+//      the system will understand what key was given and how to handle it. 
 //----------------------------------------------------------------------------------
 unsigned char grab_user_input_from_getchar(FILE * fd) {
     char c, character;
@@ -159,9 +171,16 @@ unsigned char grab_user_input_from_getchar(FILE * fd) {
 //----------------------------------------------------------------------------------
 // Function Name: grab_user_input_from_dev_file
 // Function Input Variables:
+//    - FILE * fd:  is a file pointer to where to grab user input from. 
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful: a character value or a number to a special character.
+//    - Error:      a zero value is returned.
+// Function Notes:
+//    - This function uses the Linux input system to understand the structure of how
+//      the system writes data to the /dev/input/keyboard file. This function has to 
+//      do a lot more in order to understand what data the user is typing on the keyboard.
+//      The function still returns a number that gets read from another functio nand what
+//      to do on the screen. 
 //----------------------------------------------------------------------------------
 unsigned char grab_user_input_from_dev_file(FILE * fd) {
 
@@ -328,9 +347,15 @@ unsigned char grab_user_input_from_dev_file(FILE * fd) {
 //----------------------------------------------------------------------------------
 // Function Name: process_user_input
 // Function Input Variables:
+//    - unsigned char (*function_ptr)(FILE * fd), FILE * fd: is a function pointer and the arguments for the given function.
 // Function Return Value:
-//  - Successful:
-//  - Error:
+//    - Successful: a zero value for a successful return.
+//    - Error:      an error of some sorts has been found. 
+// Function Notes:
+//    - This function takes in a function pointer on where to get the user input information
+//      and processes it. If it isn't a special character then it gets printed to the screen
+//      else there is more processing that needs to be done to handle the certain keys that 
+//      are being pressed like arrow keys, Home, Delete, and so forth. 
 //----------------------------------------------------------------------------------
 int process_user_input(unsigned char (*function_ptr)(FILE * fd), FILE * fd)
 {
@@ -409,10 +434,7 @@ int process_user_input(unsigned char (*function_ptr)(FILE * fd), FILE * fd)
                     // Note: Subtract one from the linked list iterator to get the previous command that was executed.
                     executed_commands_iterator--;
 
-                    arrow_up_key_press(&user_input, &executed_commands, executed_commands_iterator, cursor_position);
-
-                    // Note: Save the new cursor position for the new command on the screen.
-                    cursor_position = user_input->current_num_col + 1;
+                    cursor_position = arrow_up_key_press(&user_input, executed_commands, executed_commands_iterator, cursor_position);
                 }
 
                 break;                
@@ -423,10 +445,7 @@ int process_user_input(unsigned char (*function_ptr)(FILE * fd), FILE * fd)
                     // Note: Add one from the linked list iterator to get the next command that was executed.
                     executed_commands_iterator++;
 
-                    arrow_down_key_press(&user_input, &executed_commands, executed_commands_iterator, cursor_position);
-
-                    // Note: Save the new cursor position for the new command on the screen.
-                    cursor_position = user_input->current_num_col + 1;
+                    cursor_position = arrow_down_key_press(&user_input, executed_commands, executed_commands_iterator, cursor_position);
                 }
                 else
                 {
