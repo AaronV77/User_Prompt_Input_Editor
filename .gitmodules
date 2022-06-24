@@ -1,0 +1,3 @@
+[submodule "include/AString"]
+	path = include/AString
+	url = git@github.com:AaronV77/AString.git
